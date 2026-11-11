@@ -1,44 +1,72 @@
-public class Main {
-    public static void main(String[] args) {
-        Vehicle[] cars = {
-            new Vehicle("Mercedes-Benz", "G-Wagon", 2023),
-            new Vehicle("Suzuki", "Jimny", 2021),
-            new Vehicle("Mercedes-Benz", "300SL Gullwing", 1955)
-        };
-
-        for (int i = 0; i < cars.length; i++) {
-            printVehicle(cars[i], i + 1);
-        }
-
-        testSetYear(cars[0]);
-        testInvalidYears();
+public class Main{
+   public static void printAll(Vehicle vehicle){
+      vehicle.displayInfo();
+        
+   
+   }   
+   public static void printMovement(Vehicle vehicle){
+      vehicle.moveForward();
+      vehicle.moveBackward();
+      vehicle.moveLeft();
+      vehicle.moveRight();
+      } 
+    public static void performService(serviceable item){
+         item.service();
     }
+    
+   public static void main(String[] args){
+     
+     
+                
+      Vehicle c1=new car("Toyota",2011,"Furtuner",4); 
+            
+             printAll(c1);
+             
+      c1= new motorcycle("ADV",2022," alveywashu","CVT");
+            printAll(c1);
+      c1=new truck("Ford",2018,"F-series",4);
+            printAll(c1);
+            
+            
+            
+       System.out.println("One method different types: ");
+       
+       car car= new car("GTR",1969,"Hakosuka",4);
+         printAll(car);
+       motorcycle motor=new motorcycle("Honda",2021,"Beat","CVT");
+         printAll(motor);
+       truck truck= new truck("Ford",2024,"Raptor",4);
+         printAll(truck);       
+       
+       System.out.println("Mixed arrays");
+       
+       Vehicle[] washu={
+         new car("Toyota",2011,"Furtuner",4),
+         new motorcycle("Raider",2018,"150","6-speed constant mesh"),
+         new truck("Nissan",2010,"Frontier",4)
+       };
+       for(Vehicle coll: washu){
+            printAll(coll); 
+            printMovement(coll);
+            System.out.println();
+         }
+         
+         printer printer= new printer();
+         serviceable[] items = {car,
+                            truck,
+                            motor,
+                            printer
+                            };
+                            
+                 
+        for(serviceable item: items){
+            performService(item);
+            
+         }
+         
+         
+            
+            
 
-    public static void printVehicle(Vehicle v, int num) {
-        System.out.println("===== Vehicle " + num + " =====");
-        v.displayInfo();
-        System.out.println("Age: " + v.calculateAge());
-        System.out.println("Vintage? " + v.isVintage());
-        System.out.println("Getters: " + v.getBrand() + " | " + v.getModel() + " | " + v.getYear());
-        System.out.println();
-    }
-
-    public static void testSetYear(Vehicle v) {
-        System.out.println("===== setYear Tests =====");
-        System.out.println("setYear(2000) -> " + v.setYear(2000));
-        System.out.println("Year now: " + v.getYear() + " | Age: " + v.calculateAge() + " | Vintage: " + v.isVintage());
-        System.out.println("setYear(1885) -> " + v.setYear(1885));
-        System.out.println("Year still: " + v.getYear());
-        System.out.println("setYear(2027) -> " + v.setYear(2027));
-        System.out.println("Year still: " + v.getYear());
-        System.out.println();
-    }
-
-    public static void testInvalidYears() {
-        System.out.println("===== Invalid Constructor Years =====");
-        Vehicle a = new Vehicle("Test", "Invalid1885", 1885);
-        Vehicle b = new Vehicle("Test", "Invalid2027", 2027);
-        System.out.println("Input 1885 -> stored year: " + a.getYear());
-        System.out.println("Input 2027 -> stored year: " + b.getYear());
-    }
+   }
 }
